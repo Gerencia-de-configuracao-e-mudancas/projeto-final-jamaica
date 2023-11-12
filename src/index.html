@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/loader.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="content">                
+        <div class="parteCima">
+          <header>
+            <h1>KliMap</h1>
+          </header>
+
+          <div class="ghostDiv">
+
+            <!-- <p class="errorMSG"> Erro na requisição, tente novamente! </p> -->
+  
+            <form>
+              <input
+                id="inputForm"
+                type="text name"
+                placeholder="Informe o nome da cidade"
+              />
+              <button id="searchButton">Procurar</button>
+            </form>
+
+            <div class="separator">ou</div>
+
+            <div class="getLocation">
+              <button id="locationButton">Localização Atual</button>
+            </div>
+          </div>
+
+          <div class="loader" style="display: none;"><div></div><div></div></div>
+
+        </div>
+
+        <div class="parteBaixo">
+          <div class="body">
+            <p class="errorMSG" d> Erro na requisição, tente novamente! </p>
+
+            <div class="upperInfo">
+
+              <div class="localizacao">
+                <img src="./assets/staticIcons/location-pin.png" alt="" id="pinIcon" />
+                <span id="localizacao"> - </span>
+              </div>
+
+              <div class="hora">
+                <img src="./assets/staticIcons/clock.png" alt="" id="pinIcon" />
+                <span id="hora"> - </span>
+              </div>
+            </div>
+
+            <img src="./assets/staticIcons/station.png" alt="" id="mainImage"/>
+            <span id="temperatura"> - </span>
+            <span id="estado"> - </span>
+          </div>
+
+          <div class="footer">
+            <div class="infosDiv" id="sensacao-termica">
+              <img src="./assets/staticIcons/termometro.png" alt="" />
+              <div class="infoDiv">
+                <span class="infoSpan" id="sensacaoTermica"> - </span>
+                <span class="descricao">S. Termica</span>
+              </div>
+            </div>
+
+            <div class="infosDiv">
+              <img src="./assets/staticIcons/chuva.png" alt="" />
+              <div class="infoDiv">
+                <span class="infoSpan" id="chuva">-</span>
+                <span class="descricao">Chuva</span>
+              </div>
+            </div>
+
+            <div class="infosDiv">
+              <img src="./assets/staticIcons/umidade.png" alt="" />
+              <div class="infoDiv">
+                <span class="infoSpan" id="umidade">-</span>
+                <span class="descricao">Umidade</span>
+              </div>
+            </div>
+
+            <div class="infosDiv">
+              <img src="./assets/staticIcons/ventoso.png" alt="" />
+              <div class="infoDiv">
+                <span class="infoSpan" id="vento">-</span>
+                <span class="descricao">Vento</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

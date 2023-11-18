@@ -1,4 +1,10 @@
+import CaixaDagua from './requisicoes.js';
+import { ajustarHora } from './utils.js';
+
 const inputCamp = document.querySelector("#autoComplete");
+
+const weatheApiKey = "INFORME SUA KEY PARA A WEATHER API";
+const getData = new CaixaDagua(weatheApiKey);
 
 /* ----------------------------- Google Autocomplete --------------------------------------- */
 
@@ -24,16 +30,18 @@ async function onPlaceChanged() {
     let latitude = place.geometry.location.lat();
     let longitude = place.geometry.location.lng();
 
-    console.log('Latitude: ' + latitude);
-    console.log('Longitude: ' + longitude);
+    let horaCerta = ajustarHora(place.utc_offset_minutes)
+
+    const result = await getData.getAllInfo(latitude, longitude, horaCerta);
+    console.log(result);
   }
 }
-
 /* ----------------------------- Injetando Google Autocomplete na DOM --------------------------------------- */
+const googleAPIKEY = "INFORME SUA KEY PARA A API DO GOOGLE";
 
 window.initAutocomplete = initAutocomplete;
 const script = document.createElement('script');
-script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAEDRwghEZTHUbsv_KI9agYe0bN0EDO3N8&language=pt_BR&libraries=places&callback=initAutocomplete";
+script.src = `https://maps.googleapis.com/maps/api/js?key=${googleAPIKEY}&language=pt_BR&libraries=places&callback=initAutocomplete`;
 script.async = true;
 script.defer = true;
 document.head.appendChild(script);

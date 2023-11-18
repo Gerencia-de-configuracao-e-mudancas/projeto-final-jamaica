@@ -60,6 +60,31 @@ input:focus {
   box-shadow: 0 0 10px rgba(81, 203, 238, 1); /* Substitua pela cor desejada */
 }
 
+/* Google AutoComplete */
+
+.pac-item > span{
+  font-size: 12px;
+  color: black;
+}
+
+.pac-matched {
+  font-weight: 600;
+  font-size: 14px;
+  color: black;
+
+}
+
+.pac-container {
+  width: 340px;
+  position: absolute;
+  left: 154px;
+  top: 210px;
+  padding: 5px;
+  color: black;
+}
+
+/* ----------------------------------------------------------------- */
+
 nav {
   display: flex;
   justify-content: space-around;

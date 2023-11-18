@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta thttp-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <title>Weather APP</title>
+  <link rel="stylesheet" href="./src/css/index.css" />
+  <link rel="stylesheet" href="./src/css/loader.css" />
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="content">
+      <header>
+        <form>
+          <input id="autoComplete" type="text name" placeholder="Informe o nome da cidade" />
+        </form>
+
+        <nav>
+          <button class="changeBTN isActive" data-value="true" id="hojeBTN">Hoje</button>
+          <button class="changeBTN" data-value="false" id="amanhaBTN">Amanhã</button>
+          <button class="changeBTN" data-value="false" id="dezDiasBTN">10 dias</button>
+        </nav>
+
+      </header>
+
+      <div class="loader" style="display: none;">
+        <div></div>
+        <div></div>
+      </div>
+
+      <div class="prevWeatherDIV" style="display: none;"></div>
+
+      <main>
+          
+        <div class="dataDIV">
+          <span id="cidadeNome"></span> 
+          <span id="data"></span>
+        </div>
+
+        <div class="tempInfo">
+          <div class="dadosDIV">
+            <span id="temperatura"> - </span>
+            <span class="littleText" id="sensacaoTermica">Sensação térmica: -</span>
+            <span class="littleText" id="chuva">Chances de chuva: -</span>
+            <span class="littleText" id="maxTemp">Temp Máxima: -</span>
+            <span class="littleText" id="minTemp">Temp Miníma: -</span>
+          </div>
+
+          <div class="iconDIV">
+            <img src="./src/assets/staticIcons/station.png" alt="" id="icon">
+            <span class="littleText" id="status"></span>
+          </div>
+        </div>
+      </main>
+
+      <footer id="chartContainer">
+        <canvas id="myChart"></canvas>
+      </footer>
+    </div>
+  </div>
+</body>
+
+</html>

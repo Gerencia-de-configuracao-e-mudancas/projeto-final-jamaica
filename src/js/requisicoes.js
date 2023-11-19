@@ -13,12 +13,16 @@ export default class CaixaDagua {
     try {
       const result = await this.getTempInfo(latitude, longitude, 24, 10);
       const compactInfos =  this.getCompactInfos(result,10);
+      const dadosGraficoHoje = this.getGraphicDataB(result, 0, hora);
+      const dadosGraficoAmanha = this.getGraphicDataB(result, 1, 7);
       const dadosHoje = this.getDayWeatherInfo(result, 0);
       const dadosAmanha = this.getDayWeatherInfo(result, 1);
       dadosAmanha.cidadeNome = dadosHoje.cidadeNome;
       return [
         dadosHoje,
+        dadosGraficoHoje,
         dadosAmanha,
+        dadosGraficoAmanha,
         compactInfos
       ]
     }catch (error){
@@ -44,7 +48,6 @@ export default class CaixaDagua {
   /* funÇão responsavel por parsear o objeto recebido da API e parsear para um array com informaçoes de tempo compactas de um numero de dias especificados*/
   getCompactInfos(json, days) {
     let i;
-    console.log(json);
     let trunc = json.forecast.forecastday;
     const infos = [];
   
@@ -74,6 +77,47 @@ export default class CaixaDagua {
     return infos;
   }
 
+  /* Função responsavel por pegar dados os dados necessarios para a construção do grafico. Recebe como parametro o dia e o horario inicial para a montagem dos dados */
+  getGraphicDataB(json, dia, hora) {
+    const horasOBJ = json.forecast.forecastday[dia]?.hour;
+    if (!horasOBJ){
+      return undefined;
+    }
+
+    const dados = []
+    let horaAtual =  Number(hora);
+    let i;
+
+    for (i = 0; i < 8; i++) {
+      const temperatura = Math.round(horasOBJ[horaAtual].temp_c);
+      const horaFormatada = horaAtual < 10 ? '0' + horaAtual : horaAtual;
+      dados.push({ temperatura, hora: horaFormatada });
+
+      horaAtual++;
+
+      if (horaAtual == 24) {
+        break;
+      }
+    }
+
+    if (i < 7) {
+      const amanha = json.forecast.forecastday[dia + 1]?.hour;
+
+      if (amanha) {
+        horaAtual = 0;
+
+        for (i; i < 7; i++){
+          const temperatura = Math.round(amanha[horaAtual].temp_c);
+          const horaFormatada = horaAtual < 10 ? '0' + horaAtual : horaAtual;
+          dados.push({ temperatura, hora: horaFormatada });
+
+          horaAtual++;
+        }
+      }
+    }
+
+    return dados;
+  }
 
   /* Função que vai retornar informações completas sobre um dia especificado como parametro. 0 = hoje*/
   getDayWeatherInfo(json, day = 0) {

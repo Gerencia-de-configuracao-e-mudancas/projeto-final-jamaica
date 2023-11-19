@@ -1,7 +1,9 @@
 import CaixaDagua from './requisicoes.js';
 import { ajustarHora } from './utils.js';
+import { getChartConfig } from './grafico.js';
 
-const getData = new CaixaDagua('a24b06ebe4fc4a5c80b222503231811');
+const weatheApiKey = "a24b06ebe4fc4a5c80b222503231811a24b06ebe4fc4a5c80b222503231811";
+const getData = new CaixaDagua(weatheApiKey);
 
 /* ----------------------------- Elementos que vão ser manipulados --------------------------------------- */
 const inputCamp = document.querySelector("#autoComplete");
@@ -21,10 +23,14 @@ const status = document.querySelector("#status");
 
 const loader = document.querySelector(".loader");
 const prevWeatherDIV = document.querySelector('.prevWeatherDIV');
+const grafico = document.querySelector("#myChart");
 
 /* ----------------------------- variaveis de controle --------------------------------------- */
 let InfosHoje = null;
 let InfosAmanha = null;
+let graficoConfigHoje = null;
+let graficoConfigAmanha = null;
+let myChart = null;
 let prevWeatherList = [];
 
 /* ----------------------------- Paginação --------------------------------------- */
@@ -33,12 +39,18 @@ buttonHoje.addEventListener('click', (e) => {
   e.preventDefault();
   if (buttonHoje.getAttribute('data-value') != 'true') {
     insertValues(InfosHoje);
+    if (myChart) {
+      myChart.destroy();
+    }
 
     if (dezDiasBTN.getAttribute('data-value') == 'true') {
       prevWeatherDIV.style.display = 'none';
       document.querySelector('main').style.display = 'flex';
       document.querySelector('footer').style.display = 'block';
     }
+
+    myChart = new Chart(grafico,graficoConfigHoje);
+
     buttonHoje.setAttribute('data-value', 'false');
     buttonHoje.classList.add('isActive');
     amanhaBTN.setAttribute('data-value', 'false');
@@ -52,6 +64,9 @@ amanhaBTN.addEventListener('click', (e) => {
   e.preventDefault();
   if (amanhaBTN.getAttribute('data-value') != 'true' && InfosAmanha !== null) {
     insertValues(InfosAmanha);
+    if (myChart) {
+      myChart.destroy();
+    }
 
     if (dezDiasBTN.getAttribute('data-value') == 'true') {
       prevWeatherDIV.style.display = 'none';
@@ -59,6 +74,7 @@ amanhaBTN.addEventListener('click', (e) => {
       document.querySelector('footer').style.display = 'block';
     }
 
+    myChart = new Chart(grafico,graficoConfigAmanha);
     amanhaBTN.setAttribute('data-value', 'true');
     amanhaBTN.classList.add('isActive');
     buttonHoje.setAttribute('data-value', 'false');
@@ -122,13 +138,19 @@ async function onPlaceChanged() {
   
     const result = await getData.getAllInfo(latitude, longitude, horaCerta);
     InfosHoje = result[0];
-    InfosAmanha = result[1];
-    prevWeatherList = result[2];
+    graficoConfigHoje = getChartConfig(grafico, result[1]);
+    InfosAmanha = result[2];
+    graficoConfigAmanha = getChartConfig(grafico, result[3]);
+    prevWeatherList = result[4];
 
     if (!result) {
       displayError();
     } else {
       insertValues(InfosHoje);
+      if (myChart) {
+        myChart.destroy();
+      }
+      myChart = new Chart(grafico,graficoConfigHoje);
     }
     turnLoader(false);    
     inputCamp.value = ""
@@ -216,10 +238,11 @@ function criarPrevWeatherInfo(dia, texto, iconSrc, maxima, minima) {
 }
 
 /* ----------------------------- Injetando Google Autocomplete na DOM --------------------------------------- */
+const googleAPIKEY = "AIzaSyDO8IVhZMPSVShrUGbvZqHauS_-girOn48 ";
 
 window.initAutocomplete = initAutocomplete;
 const script = document.createElement('script');
-script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAEDRwghEZTHUbsv_KI9agYe0bN0EDO3N8&language=pt_BR&libraries=places&callback=initAutocomplete";
+script.src = `https://maps.googleapis.com/maps/api/js?key=${googleAPIKEY}&language=pt_BR&libraries=places&callback=initAutocomplete`;
 script.async = true;
 script.defer = true;
 document.head.appendChild(script);

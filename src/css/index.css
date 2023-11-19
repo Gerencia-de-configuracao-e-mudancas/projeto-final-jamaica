@@ -83,7 +83,7 @@ input:focus {
   color: black;
 }
 
-/* ----------------------------------------------------------------- */
+/* ----- */
 
 nav {
   display: flex;
@@ -172,6 +172,60 @@ main {
   bottom: 0;
 }
 
+/* -------------------------------------------------------- */
+
+.prevWeatherDIV {
+  height: fit-content;
+  background-color: #202125;
+  width: 100vw;
+  max-width: 720px;
+  height: 100vh;
+}
+
+.prevWeatherInfo {
+  width: 100%;
+  padding-top: 19px;
+  padding-bottom: 19px;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgb(99, 99, 99);
+}
+
+
+.prevWeatherInfo > .left > span {
+  display: flex;
+  padding-left: 20px;
+}
+
+.prevWeatherSpan.whiteSpan {
+  color: rgb(214, 213, 213);
+  font-size: 16px;
+}
+
+.prevWeatherSpan.greySpan {
+  color: rgb(119, 119, 119);
+  font-size: 16px;
+}
+
+.right {
+  display: flex;
+  gap: 10px;
+  width: fit-content;
+  justify-content: center;
+  align-items: center;
+  padding-right: 20px;
+}
+
+.right > img {
+  width: 40px;
+  height: 40px;
+}
+
+.rightSpan {
+  display: flex;
+  flex-direction: column;
+}
+
 @media (min-width: 720px) {
   .content {
     background-color: rgba(0,0,0,0.1);
@@ -190,5 +244,12 @@ main {
     position: absolute;
     bottom: 0;
     padding-bottom: 6px;
+  }
+  .prevWeatherDIV {
+    border-radius: 0px 0px 10px 10px;
+    overflow-y: auto;
+    overflow-x: auto;
+    background-color: rgba(0,0,0,.8);
+    max-height: calc(100% - 101px); /* 100% da altura do pai - 200px */
   }
 }

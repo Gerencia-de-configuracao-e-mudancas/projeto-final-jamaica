@@ -9,13 +9,16 @@ export default class CaixaDagua {
   }
 
   /* vai pegar tudo de uma lapada so*/
-   async getAllInfo(latitude, longitude) {
+   async getAllInfo(latitude, longitude, hora) {
     try {
       const result = await this.getTempInfo(latitude, longitude, 24, 10);
       const compactInfos =  this.getCompactInfos(result,10);
       const dadosHoje = this.getDayWeatherInfo(result, 0);
+      const dadosAmanha = this.getDayWeatherInfo(result, 1);
+      dadosAmanha.cidadeNome = dadosHoje.cidadeNome;
       return [
         dadosHoje,
+        dadosAmanha,
         compactInfos
       ]
     }catch (error){
@@ -41,6 +44,7 @@ export default class CaixaDagua {
   /* funÇão responsavel por parsear o objeto recebido da API e parsear para um array com informaçoes de tempo compactas de um numero de dias especificados*/
   getCompactInfos(json, days) {
     let i;
+    console.log(json);
     let trunc = json.forecast.forecastday;
     const infos = [];
   
@@ -69,6 +73,7 @@ export default class CaixaDagua {
     }
     return infos;
   }
+
 
   /* Função que vai retornar informações completas sobre um dia especificado como parametro. 0 = hoje*/
   getDayWeatherInfo(json, day = 0) {

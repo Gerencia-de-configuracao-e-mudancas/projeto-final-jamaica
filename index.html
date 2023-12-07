@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Rick and Morty</title>
+  </head>
+  <body>
+    <header>
+      <img src="img/rick-and-morty-logo.png" alt="" width="100px" />
+      <nav>
+        <a href="">Personagens</a>
+        <a href="">Locais</a>
+        <a href="">Episódios</a>
+      </nav>
+    </header>
+    <h1>Rick and Morty</h1>
+    <main>
+      <header class="main__header">
+        <p>Click cards to flip and view details</p>
+      </header>
+      <ol class="card__list" id="character-list">
+        <li class="card__item">
+          <button aria-label="Flip card for details" class="card__button" onclick="flipCard(this)" type="button">
+            <div class="card__front">
+              <img alt="Rick Sanchez" class="card__image" height="288" loading="lazy" src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" width="288">
+              <h2 class="card__name">Rick Sanchez</h2>
+            </div>
+            <div class="card__back">
+              <dl class="card__description">
+                <dt class="card__term">Name</dt>
+                <dd class="card__detail">Rick Sanchez</dd>
+                <dt class="card__term">Species</dt>
+                <dd class="card__detail">Human</dd>
+                <dt class="card__term">Gender</dt>
+                <dd class="card__detail">Male</dd>
+                <dt class="card__term">Status</dt>
+                <dd class="card__detail">Alive</dd>
+                <dt class="card__term">Location</dt>
+                <dd class="card__detail">Earth (Replacement Dimension)</dd>
+                <dt class="card__term">Appearances</dt>
+                <dd class="card__detail">36</dd>
+              </dl>
+            </div>
+          </button>
+        </li>
+    
+        <li class="card__item">
+          <button aria-label="Flip card for details" class="card__button" onclick="flipCard(this)" type="button">
+            <div class="card__front">
+              <img alt="Morty Smith" class="card__image" height="288" loading="lazy" src="https://rickandmortyapi.com/api/character/avatar/2.jpeg" width="288">
+              <h2 class="card__name">Morty Smith</h2>
+            </div>
+            <div class="card__back">
+              <dl class="card__description">
+                <dt class="card__term">Name</dt>
+                <dd class="card__detail">Morty Smith</dd>
+                <dt class="card__term">Species</dt>
+                <dd class="card__detail">Human</dd>
+                <dt class="card__term">Gender</dt>
+                <dd class="card__detail">Male</dd>
+                <dt class="card__term">Status</dt>
+                <dd class="card__detail">Alive</dd>
+                <dt class="card__term">Location</dt>
+                <dd class="card__detail">Earth (Replacement Dimension)</dd>
+                <dt class="card__term">Appearances</dt>
+                <dd class="card__detail">36</dd>
+              </dl>
+            </div>
+          </button>
+        </li>
+      </ol>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rick and Morty</title>
+
+    <link rel="stylesheet" href="src/styles/style.css" />
+    <link rel="stylesheet" href="src/styles/personagem.css" />
+    <link
+      rel="shortcut icon"
+      href="src/img/rick-and-morty-logo.png"
+      type="image/x-icon"
+    />
+  </head>
+
+  <body>
+    <div class="wrapper" style="justify-content: start">
+      <h1>Rick and Morty</h1>
+      <header>
+        <a href="index.html">
+          <img src="src/img/rick-and-morty-logo.png" width="100px" />
+        </a>
+        <nav>
+          <a href="personagem.html">Personagens</a>
+          <a href="/">Episódios</a>
+        </nav>
+      </header>
+
+      <main>
+        <input
+          type="text"
+          id="inputPersonagem"
+          placeholder="Insira o nome do Personagem"
+        />
+        <button id="btnProcurar" disabled="true">Procurar</button>
+
+        <div class="personagensDiv">
+          <div class="cardWrapper">
+            <div class="imgWrapper">
+              <img class="imgCharacter" src="./src/img/rick-morty-scared.jpg" />
+            </div>
+            <div class="textWrapper">
+              <span id="name">Estatico</span>
+              <div class="infoWrapper">
+                <div class="vivo-morto"></div>
+                <span id="isAlive">Dead</span>
+                <span>-</span>
+                <span id="type">Desconhecido</span>
+              </div>
+              <div class="atributWrapper">
+                <span class="tagInfo">Last Known Location:</span>
+                <span id="lastKnownLoc">Sousa / Rua do Embaço</span>
+              </div>
+              <div>
+                <span class="tagInfo">Gender:</span>
+                <span id="genero">Afrodita</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

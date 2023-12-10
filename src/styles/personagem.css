@@ -97,3 +97,48 @@ span {
 .vivo-morto.vivo {
   background-color: green;
 }
+
+@media (max-width: 550px) {
+  .personagensDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  #btnProcurar {
+    margin-top: 20px;
+  }
+
+  .imgWrapper {
+    width: 220px;
+    height: 220px;
+  }
+
+  .imgWrapper > img {
+    border-radius: 0px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+  }
+
+  .cardWrapper {
+    flex-wrap: wrap;
+    width: 220px;
+    height: fit-content;
+    background-color: #3c3e44;
+  }
+
+  .textWrapper {
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 5px;
+  }
+}
+
+@media (max-width: 390px) {
+  #inputPersonagem {
+    width: 100%;
+    text-align: center;
+  }
+}

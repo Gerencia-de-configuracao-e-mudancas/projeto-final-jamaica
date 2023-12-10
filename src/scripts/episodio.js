@@ -1,17 +1,17 @@
-import {
-  requisitarEpisodios,
-  objectsToHTMLElements,
-} from "./episodioScript.js";
+import {requisitarEpisodios,objectsToHTMLElements,} from "./utils/episodioScript.js";
+import turnLoader from "./utils/loaderScript.js";
 
 const proximaPag = document.querySelector("#proximo");
 const anteriorPag = document.querySelector("#anterior");
 const cardWrapper = document.querySelector("#episodes");
+const loader = document.querySelector(".loader");
 
 let arrayEpisodios = [];
 let episodiosAtuais = [];
 let episodio = 0;
 
 window.addEventListener("load", async () => {
+  turnLoader(loader, cardWrapper, "block");
   arrayEpisodios = await requisitarEpisodios();
   if (arrayEpisodios === undefined) {
     alert("Erro ao carregar episódios!");
@@ -21,6 +21,7 @@ window.addEventListener("load", async () => {
   anteriorPag.disabled = true;
   episodiosAtuais = arrayEpisodios.slice(0, 5);
   cardWrapper.replaceChildren(...objectsToHTMLElements(episodiosAtuais));
+  turnLoader(cardWrapper, loader, "flex");
 });
 
 proximaPag.addEventListener("click", (e) => {

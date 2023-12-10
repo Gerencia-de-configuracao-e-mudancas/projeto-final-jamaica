@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="src/styles/style.css" />
     <link rel="stylesheet" href="src/styles/episodes.css" />
+    <link rel="stylesheet" href="src/styles/loader.css" />
     <link
       rel="shortcut icon"
       href="src/img/rick-and-morty-logo.png"
@@ -34,11 +35,16 @@
             <button id="proximo">Próximo</button>
           </div>
 
+          <div class="loader" style="display: none;">
+            <div></div>
+            <div></div>
+          </div>  
+
           <div id="episodes">
           </div>
         </div>
       </main>
     </div>
-    <script type="module" src="src/scripts/episodio.js"></script>
+    <script type="module" src="./src/scripts/episodio.js"></script>
   </body>
 </html>

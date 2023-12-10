@@ -75,3 +75,13 @@ main {
   border-radius: 5px;
   text-align: center;
 }
+
+@media (max-width: 550px) {
+  #mainIMG {
+    width: 300px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+}

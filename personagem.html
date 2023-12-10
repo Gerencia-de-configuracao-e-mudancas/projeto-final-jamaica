@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="src/styles/style.css" />
     <link rel="stylesheet" href="src/styles/personagem.css" />
+    <link rel="stylesheet" href="src/styles/loader.css" />
     <link
       rel="shortcut icon"
       href="src/img/rick-and-morty-logo.png"
@@ -35,10 +36,15 @@
         />
         <button id="btnProcurar" disabled="true">Procurar</button>
 
+        <div class="loader" style="display: none;">
+          <div></div>
+          <div></div>
+        </div>  
+
         <div class="personagensDiv">
         </div>
       </main>
     </div>
-    <script type="module" src="src/scripts/personagem.js"></script>
+    <script type="module" src="./src/scripts/personagem.js"></script>
   </body>
 </html>
